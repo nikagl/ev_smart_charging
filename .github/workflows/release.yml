@@ -50,9 +50,15 @@ jobs:
           git tag "v${{ steps.new_version.outputs.version }}"
           git push origin "v${{ steps.new_version.outputs.version }}"
 
+      - name: Build release zip
+        run: |
+          cd custom_components/ev_smart_charging
+          zip ev_smart_charging.zip -r ./
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "v${{ steps.new_version.outputs.version }}"
           name: "v${{ steps.new_version.outputs.version }}"
           generate_release_notes: true
+          files: custom_components/ev_smart_charging/ev_smart_charging.zip
