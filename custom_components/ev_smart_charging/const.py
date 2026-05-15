@@ -6,7 +6,7 @@ from homeassistant.const import __version__ as HA_VERSION
 NAME = "EV Smart Charging"
 DOMAIN = "ev_smart_charging"
 DOMAIN_DATA = f"{DOMAIN}_data"
-VERSION = "0.1.8"
+VERSION = "0.1.9"
 ISSUE_URL = "https://github.com/jonasbkarlsson/ev_smart_charging/issues"
 
 # Icons
