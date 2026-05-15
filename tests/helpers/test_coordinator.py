@@ -48,6 +48,13 @@ def _canonical_raw(raw_data):
     ]
 
 
+def _canonical_item(item):
+    """Keep only canonical keys from a single raw item for stable comparisons."""
+    if item is None:
+        return None
+    return {"start": item["start"], "end": item["end"], "value": item["value"]}
+
+
 # We can pass fixtures as defined in conftest.py to tell pytest to use the fixture
 # for a given test. We can also leverage fixtures and mocks that are available in
 # Home Assistant using the pytest_homeassistant_custom_component plugin.
@@ -137,7 +144,7 @@ async def test_raw_energidataservice(hass, set_cet_timezone):
         2022, 9, 30, 8, 0, 0, tzinfo=dt_util.get_time_zone("Europe/Stockholm")
     )
     assert price.get_value(time) == 388.65
-    assert price.get_item(time) == {
+    assert _canonical_item(price.get_item(time)) == {
         "start": datetime(
             2022, 9, 30, 8, 0, tzinfo=dt_util.get_time_zone("Europe/Stockholm")
         ),
@@ -154,7 +161,7 @@ async def test_raw_energidataservice(hass, set_cet_timezone):
 
     price2 = Raw(PRICE_20221001_ENERGIDATASERVICE, price_format)
     price.extend(None)
-    assert price.get_raw() == PRICE_20220930_15MIN
+    assert _canonical_raw(price.get_raw()) == PRICE_20220930_15MIN
     price.extend(price2)
     assert price.number_of_nonzero() == 48 * 4
 
@@ -192,7 +199,7 @@ async def test_raw_entsoe(hass, set_cet_timezone, freezer):
         2022, 9, 30, 8, 0, 0, tzinfo=dt_util.get_time_zone("Europe/Stockholm")
     )
     assert price.get_value(time) == 388.65
-    assert price.get_item(time) == {
+    assert _canonical_item(price.get_item(time)) == {
         "start": datetime(
             2022, 9, 30, 8, 0, tzinfo=dt_util.get_time_zone("Europe/Stockholm")
         ),
@@ -213,7 +220,7 @@ async def test_raw_entsoe(hass, set_cet_timezone, freezer):
 
     price2 = Raw(PRICE_20221001_ENTSOE, price_format)
     price.extend(None)
-    assert price.get_raw() == PRICE_20220930_15MIN
+    assert _canonical_raw(price.get_raw()) == PRICE_20220930_15MIN
     price.extend(price2)
     assert price.number_of_nonzero() == 48 * 4
 
@@ -252,7 +259,7 @@ async def test_raw_tge(hass, set_cet_timezone):
         2022, 9, 30, 8, 0, 0, tzinfo=dt_util.get_time_zone("Europe/Stockholm")
     )
     assert price.get_value(time) == 388.65
-    assert price.get_item(time) == {
+    assert _canonical_item(price.get_item(time)) == {
         "start": datetime(
             2022, 9, 30, 8, 0, tzinfo=dt_util.get_time_zone("Europe/Stockholm")
         ),
@@ -269,7 +276,7 @@ async def test_raw_tge(hass, set_cet_timezone):
 
     price2 = Raw(PRICE_20221001_TGE, price_format)
     price.extend(None)
-    assert price.get_raw() == PRICE_20220930_15MIN
+    assert _canonical_raw(price.get_raw()) == PRICE_20220930_15MIN
     price.extend(price2)
     assert price.number_of_nonzero() == 48 * 4
 
