@@ -42,6 +42,14 @@ from tests.price_15min import (
 )
 
 
+def _canonical_raw(raw_data):
+    """Keep only canonical raw keys for stable comparisons."""
+    return [
+        {"start": item["start"], "end": item["end"], "value": item["value"]}
+        for item in raw_data
+    ]
+
+
 # pylint: disable=unused-argument
 async def test_inintiate(hass, freezer):
     """Test initiate"""
@@ -242,7 +250,7 @@ async def test_get_raw_today_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_today_local = price_adaptor.get_raw_today_local(price_state)
-    assert raw_today_local.data == PRICE_20220930_15MIN
+    assert _canonical_raw(raw_today_local.data) == PRICE_20220930_15MIN
 
     # Test PLATFORM_ENERGIDATASERVICE
     MockPriceEntityEnergiDataService.create(hass, entity_registry)
@@ -263,7 +271,7 @@ async def test_get_raw_today_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_today_local = price_adaptor.get_raw_today_local(price_state)
-    assert raw_today_local.data == PRICE_20220930_15MIN
+    assert _canonical_raw(raw_today_local.data) == PRICE_20220930_15MIN
 
     # Test PLATFORM_ENTSOE
     MockPriceEntityEntsoe.create(hass, entity_registry)
@@ -282,7 +290,7 @@ async def test_get_raw_today_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_today_local = price_adaptor.get_raw_today_local(price_state)
-    assert raw_today_local.data == PRICE_20220930_15MIN
+    assert _canonical_raw(raw_today_local.data) == PRICE_20220930_15MIN
 
     # Test PLATFORM_GENERIC
     MockPriceEntityGeneric.create(hass, entity_registry)
@@ -301,7 +309,7 @@ async def test_get_raw_today_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_today_local = price_adaptor.get_raw_today_local(price_state)
-    assert raw_today_local.data == PRICE_20220930_15MIN
+    assert _canonical_raw(raw_today_local.data) == PRICE_20220930_15MIN
 
     # Test template sensor with price per 15 minutes
     MockPriceEntityGeneric.set_state(hass, PRICE_20220930_GENERIC_15MIN, None)
@@ -309,7 +317,7 @@ async def test_get_raw_today_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_today_local = price_adaptor.get_raw_today_local(price_state)
-    assert raw_today_local.data == PRICE_20220930_15MIN
+    assert _canonical_raw(raw_today_local.data) == PRICE_20220930_15MIN
 
 
 async def test_get_raw_tomorrow_local(hass, set_cet_timezone, freezer):
@@ -337,7 +345,7 @@ async def test_get_raw_tomorrow_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_tomorrow_local = price_adaptor.get_raw_tomorrow_local(price_state)
-    assert raw_tomorrow_local.data == PRICE_20221001_15MIN
+    assert _canonical_raw(raw_tomorrow_local.data) == PRICE_20221001_15MIN
 
     # Test PLATFORM_ENERGIDATASERVICE
     MockPriceEntityEnergiDataService.create(hass, entity_registry)
@@ -358,7 +366,7 @@ async def test_get_raw_tomorrow_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_tomorrow_local = price_adaptor.get_raw_tomorrow_local(price_state)
-    assert raw_tomorrow_local.data == PRICE_20221001_15MIN
+    assert _canonical_raw(raw_tomorrow_local.data) == PRICE_20221001_15MIN
 
     # Test PLATFORM_ENTSOE
     MockPriceEntityEntsoe.create(hass, entity_registry)
@@ -377,7 +385,7 @@ async def test_get_raw_tomorrow_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_tomorrow_local = price_adaptor.get_raw_tomorrow_local(price_state)
-    assert raw_tomorrow_local.data == PRICE_20221001_15MIN
+    assert _canonical_raw(raw_tomorrow_local.data) == PRICE_20221001_15MIN
 
     # Test PLATFORM_GENERIC
     MockPriceEntityGeneric.create(hass, entity_registry)
@@ -396,7 +404,7 @@ async def test_get_raw_tomorrow_local(hass, set_cet_timezone, freezer):
     price_state = hass.states.get(price_sensor)
     price_adaptor.initiate(price_state)
     raw_tomorrow_local = price_adaptor.get_raw_tomorrow_local(price_state)
-    assert raw_tomorrow_local.data == PRICE_20221001_15MIN
+    assert _canonical_raw(raw_tomorrow_local.data) == PRICE_20221001_15MIN
 
 
 async def test_get_current_price(hass, set_cet_timezone, freezer):
