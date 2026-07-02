@@ -36,8 +36,8 @@ def get_lowest_quarters(
     continuous: bool,
     raw_two_days: Raw,
     quarters: int,
-    blackout_start: int,
-    blackout_end: int,
+    blackout_start: int = START_QUARTER_NONE,
+    blackout_end: int = START_QUARTER_NONE,
 ) -> list:
     """From the two-day prices, calculate the cheapest set of quarters"""
 

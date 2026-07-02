@@ -99,12 +99,12 @@
             "charge_start_day": {
                 "name": "Charge start day",
                 "state": {
-                    "Auto": "Auto",
-                    "Today": "Today",
-                    "Tomorrow": "Tomorrow",
-                    "Day 3": "Day 3",
-                    "Day 4": "Day 4",
-                    "Day 5": "Day 5"
+                    "auto": "Auto",
+                    "today": "Today",
+                    "tomorrow": "Tomorrow",
+                    "day_3": "Day 3",
+                    "day_4": "Day 4",
+                    "day_5": "Day 5"
                 }
             },
             "charge_completion_time": {
@@ -113,12 +113,12 @@
             "charge_completion_day": {
                 "name": "Charge completion day",
                 "state": {
-                    "Auto": "Auto",
-                    "Today": "Today",
-                    "Tomorrow": "Tomorrow",
-                    "Day 3": "Day 3",
-                    "Day 4": "Day 4",
-                    "Day 5": "Day 5"
+                    "auto": "Auto",
+                    "today": "Today",
+                    "tomorrow": "Tomorrow",
+                    "day_3": "Day 3",
+                    "day_4": "Day 4",
+                    "day_5": "Day 5"
                 }
             },
             "blackout_start_time": {
