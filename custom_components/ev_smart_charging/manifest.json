@@ -2,7 +2,8 @@
   "domain": "ev_smart_charging",
   "name": "EV Smart Charging",
   "codeowners": [
-    "@jonasbkarlsson"
+    "@jonasbkarlsson",
+    "@nikagl"
   ],
   "config_flow": true,
   "dependencies": [],
@@ -10,5 +11,5 @@
   "iot_class": "calculated",
   "issue_tracker": "https://github.com/jonasbkarlsson/ev_smart_charging/issues",
   "requirements": [],
-  "version": "2.5.2-beta-01"
+  "version": "2.5.2-beta-02"
 }
