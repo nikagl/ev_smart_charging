@@ -488,7 +488,7 @@ If the above works, the integration is able to control the charging.
 [hacsbadge]: https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=for-the-badge
 [creator-shield]: https://img.shields.io/badge/original%20creator-Jonas%20Karlsson%20@jonasbkarlsson-3B82F6.svg?style=for-the-badge
 [creator_profile]: https://github.com/jonasbkarlsson
-[maintenance-shield]: https://img.shields.io/badge/maintainer-Nika%20Gligoric%20@nikagl-41BDF5.svg?style=for-the-badge
+[maintenance-shield]: https://img.shields.io/badge/maintainer-Nika%20Gerson%20Lohman%20@nikagl-41BDF5.svg?style=for-the-badge
 [user_profile]: https://github.com/nikagl
 [buymecoffeebadge]: https://img.shields.io/badge/buy%20me%20a%20coffee-donate-FFDD00.svg?style=for-the-badge&logo=buymeacoffee
 [buymecoffee]: https://www.buymeacoffee.com/jonasbkarlsson
